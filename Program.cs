@@ -338,7 +338,7 @@ class Program
         int [,] maze = mazeGenerator.Board;
         (int, int) exitPosition = mazeGenerator.Exit;
 
-        //PlaceTraps(maze, 10);
+        PlaceTraps(maze, 10); // Inicializando 10 trampas en el laberinto
 
         var explorer = new Character(
             "Explorador",
