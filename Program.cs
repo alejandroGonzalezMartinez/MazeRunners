@@ -457,11 +457,20 @@ class Program
         {
             AnsiConsole.MarkupLine($"[bold green]Jugador {i + 1}, elige tu personaje:[/]");
 
+            List<string> selectableCharacters = [];
+
+            // Evitamos que el jugador 2 pueda elegir el mismo personaje que el jugador 1
+            for (int j = 0; j < 5; j++)
+            {
+                if (i > 0 && characters[j].Name == selectedCharacters[0].Name) continue;
+                selectableCharacters.Add(characters[j].Name);
+            }
+
             // Mostrar opciones de personajes
             var options = new SelectionPrompt<string>()
                 .Title("")
                 .PageSize(5)
-                .AddChoices(characters.Select(c => c.Name).ToArray());
+                .AddChoices([.. selectableCharacters]);
 
             string choice = AnsiConsole.Prompt(options);
 
